@@ -1,0 +1,113 @@
+/* Quick Ma'ed — Professional UI polish layer
+   Preserves the existing green/orange/cream identity while tightening hierarchy,
+   spacing, surfaces, controls and motion. Loaded after the original stylesheet. */
+
+:root{
+  --qm-content:1180px;
+  --qm-border:rgba(14,26,21,.10);
+  --qm-border-strong:rgba(14,26,21,.16);
+  --qm-surface:#fff;
+  --qm-surface-soft:#f8faf9;
+  --qm-text:#122019;
+  --qm-muted:#66756e;
+  --qm-radius-sm:10px;
+  --qm-radius-md:14px;
+  --qm-radius-lg:20px;
+  --qm-shadow-card:0 1px 2px rgba(14,26,21,.04),0 8px 24px rgba(14,26,21,.06);
+  --qm-shadow-float:0 14px 36px rgba(14,26,21,.10);
+}
+
+html{scroll-padding-top:84px;}
+body{background:var(--cream);color:var(--qm-text);}
+
+/* Reduce the visual noise of the original motion system. */
+.page{animation:fadeIn .28s ease-out;}
+.logo:hover,.btn-signin:hover,.icon-btn:hover{transform:none;}
+
+/* Consistent content width and section rhythm. */
+.wrap{max-width:var(--qm-content);padding-inline:24px;}
+
+/* Header: quiet, premium, product-like. */
+.hdr{background:rgba(255,255,255,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--qm-border);}
+.hdr-in{max-width:var(--qm-content);min-height:68px;padding-inline:24px;gap:12px;}
+.logo{gap:10px;}
+.logo-mark{width:42px;height:42px;filter:none;}
+.logo-txt b{font-size:1.16rem;letter-spacing:-.35px;}
+.logo-txt span{font-size:.56rem;letter-spacing:1.1px;}
+
+.nav{gap:1px;margin-inline-start:20px;}
+.nav button{padding:9px 13px;border-radius:10px;font-size:.86rem;}
+.nav button:hover{background:var(--gray-50);}
+.nav button.on{background:transparent;color:var(--green-700);}
+.nav button.on::after{width:24px;height:2px;border-radius:2px;bottom:1px;}
+
+.lang-pill{background:var(--gray-50);border-color:var(--qm-border);}
+.lang-pill button{padding:6px 10px;font-size:.74rem;}
+.icon-btn{width:40px;height:40px;border-radius:10px;background:transparent;border-color:var(--qm-border);}
+.icon-btn:hover{background:var(--gray-50);border-color:var(--qm-border-strong);}
+.btn-signin{padding:10px 18px;border-radius:10px;box-shadow:none;font-size:.84rem;}
+.btn-signin:hover{box-shadow:none;}
+
+/* Make cards feel like one coherent design system. */
+.card,.panel,.sec-card,.modal,.drawer,.sheet,.menu,.dropdown,.toast,.notice,.stat-card,.feature-card,.food-card,.restaurant-card,.order-card{
+  border-radius:var(--qm-radius-md);
+}
+.card,.panel,.sec-card,.stat-card,.feature-card,.food-card,.restaurant-card,.order-card{
+  border:1px solid var(--qm-border);
+  box-shadow:var(--qm-shadow-card);
+}
+.card:hover,.food-card:hover,.restaurant-card:hover,.feature-card:hover{box-shadow:var(--qm-shadow-float);}
+
+/* Avoid the common “AI dashboard” look of every control being a pill. */
+button:not(.lang-pill button):not(.nav button),input,select,textarea{border-radius:var(--qm-radius-sm);}
+
+/* Primary actions stay distinctive without oversized glow. */
+.btn,.btn-primary,.primary-btn,.cta,.action-primary{box-shadow:none;}
+.btn:hover,.btn-primary:hover,.primary-btn:hover,.cta:hover,.action-primary:hover{transform:translateY(-1px);}
+
+/* Form fields: clear borders and a restrained focus state. */
+input,select,textarea{border:1px solid var(--qm-border);background:var(--qm-surface);}
+input:focus,select:focus,textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(57,179,107,.12);}
+
+/* Images should feel editorial rather than decorative. */
+img{object-fit:cover;}
+
+/* Remove excessive decorative blur/glow when the original page uses it. */
+.glow,.glow-card,.hero-glow,.orb,.floating-orb{filter:none;}
+
+/* Tables and dense data. */
+table{border-collapse:separate;border-spacing:0;width:100%;background:var(--qm-surface);border:1px solid var(--qm-border);border-radius:var(--qm-radius-md);overflow:hidden;}
+th,td{padding:12px 14px;border-bottom:1px solid var(--gray-100);text-align:start;}
+th{font-size:.76rem;letter-spacing:.04em;text-transform:uppercase;color:var(--qm-muted);font-weight:700;background:var(--qm-surface-soft);}
+tr:last-child td{border-bottom:0;}
+
+/* Status indicators: readable first, decorative second. */
+.badge,.chip,.tag,.status{box-shadow:none;}
+
+/* Toasts and floating surfaces should not overpower the page. */
+.toast,.notice{box-shadow:var(--qm-shadow-float);border:1px solid var(--qm-border);}
+
+/* Mobile: prioritize usable touch targets and reduce visual density. */
+@media(max-width:767px){
+  .wrap{padding-inline:16px;}
+  .hdr-in{padding-inline:16px;min-height:64px;}
+  .logo-txt span{display:none;}
+  .logo-mark{width:38px;height:38px;}
+  .btn-signin{padding:9px 13px;}
+  .icon-btn{width:38px;height:38px;}
+  .lang-pill button{padding:6px 8px;}
+  .card,.panel,.sec-card,.stat-card,.feature-card,.food-card,.restaurant-card,.order-card{border-radius:12px;}
+}
+
+/* High contrast mode remains authoritative. */
+body.hc .card,body.hc .panel,body.hc .sec-card,body.hc input,body.hc select,body.hc textarea{border-width:2px;}
+
+/* VIP and corporate themes retain their identity but inherit the calmer geometry. */
+body.theme-vip .hdr{background:rgba(20,9,42,.94);}
+body.theme-corp .hdr{background:rgba(247,249,252,.96);}
+
+/* Keep the original animations available for functional states, but don't let
+   hover effects make controls jump around. */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto;}
+}
