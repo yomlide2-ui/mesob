@@ -75,6 +75,11 @@ img{object-fit:cover;}
 /* Remove excessive decorative blur/glow when the original page uses it. */
 .glow,.glow-card,.hero-glow,.orb,.floating-orb{filter:none;}
 
+/* Hero: keep the opening screen focused on the core message and search action.
+   The original floating food cards are intentionally hidden to reduce clutter. */
+.hero-inner{grid-template-columns:1fr!important;}
+.hero-visual{display:none!important;}
+
 /* Tables and dense data. */
 table{border-collapse:separate;border-spacing:0;width:100%;background:var(--qm-surface);border:1px solid var(--qm-border);border-radius:var(--qm-radius-md);overflow:hidden;}
 th,td{padding:12px 14px;border-bottom:1px solid var(--gray-100);text-align:start;}
